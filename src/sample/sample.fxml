@@ -4,7 +4,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="374.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="725.0">
@@ -26,7 +25,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <ListView layoutY="27.0" prefHeight="354.0" prefWidth="159.0" />
+      <ListView fx:id="listView" layoutY="27.0" prefHeight="347.0" prefWidth="159.0" />
       <Label layoutX="161.0" layoutY="27.0" text="Dados Pessoais">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -41,17 +40,19 @@
          </font>
       </Label>
       <Label layoutX="161.0" layoutY="204.0" prefHeight="17.0" prefWidth="86.0" text="Logradouro*" />
-      <TextField layoutX="225.0" layoutY="57.0" prefHeight="25.0" prefWidth="385.0" />
-      <TextField layoutX="225.0" layoutY="91.0" prefHeight="25.0" prefWidth="385.0" />
-      <TextField layoutX="225.0" layoutY="125.0" prefHeight="25.0" prefWidth="159.0" />
+      <TextField fx:id="txtNome" layoutX="225.0" layoutY="57.0" prefHeight="25.0" prefWidth="385.0" />
+      <TextField fx:id="txtEmail" layoutX="225.0" layoutY="91.0" prefHeight="25.0" prefWidth="385.0" />
+      <TextField fx:id="txtTele" layoutX="225.0" layoutY="125.0" prefHeight="25.0" prefWidth="159.0" />
       <Label layoutX="163.0" layoutY="235.0" prefHeight="17.0" prefWidth="86.0" text="Bairro" />
       <Label layoutX="161.0" layoutY="266.0" prefHeight="17.0" prefWidth="86.0" text="Complemento" />
       <Label layoutX="412.0" layoutY="235.0" prefHeight="17.0" prefWidth="86.0" text="Número*" />
       <Label layoutX="163.0" layoutY="299.0" prefHeight="17.0" prefWidth="86.0" text="CEP*" />
-      <TextField layoutX="249.0" layoutY="200.0" prefHeight="25.0" prefWidth="365.0" />
-      <TextField layoutX="249.0" layoutY="231.0" />
-      <TextField layoutX="249.0" layoutY="262.0" />
-      <TextField layoutX="249.0" layoutY="295.0" />
-      <TextField layoutX="464.0" layoutY="231.0" />
+      <TextField fx:id="txtLogra" layoutX="249.0" layoutY="200.0" prefHeight="25.0" prefWidth="365.0" />
+      <TextField fx:id="txtBairro" layoutX="249.0" layoutY="231.0" />
+      <TextField fx:id="txtComp" layoutX="249.0" layoutY="262.0" />
+      <TextField fx:id="txtCep" layoutX="249.0" layoutY="295.0" />
+      <TextField fx:id="txtNumero" layoutX="464.0" layoutY="231.0" />
+      <Button fx:id="btnSave" layoutX="616.0" layoutY="335.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="73.0" text="Salvar" />
+      <Button fx:id="btnCancel" layoutX="539.0" layoutY="335.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="73.0" text="Cancelar" />
    </children>
 </AnchorPane>
