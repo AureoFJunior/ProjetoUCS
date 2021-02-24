@@ -4,8 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="374.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="374.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">   <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="725.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
@@ -52,7 +51,7 @@
       <TextField fx:id="txtComp" layoutX="249.0" layoutY="262.0" />
       <TextField fx:id="txtCep" layoutX="249.0" layoutY="295.0" />
       <TextField fx:id="txtNumero" layoutX="464.0" layoutY="231.0" />
-      <Button fx:id="btnSave" layoutX="616.0" layoutY="335.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="73.0" text="Salvar" />
-      <Button fx:id="btnCancel" layoutX="539.0" layoutY="335.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="73.0" text="Cancelar" />
+      <Button fx:id="btnSave" layoutX="616.0" layoutY="335.0" mnemonicParsing="false" onAction="#Save" prefHeight="39.0" prefWidth="73.0" text="Salvar" />
+      <Button fx:id="btnCancel" layoutX="539.0" layoutY="335.0" mnemonicParsing="false" onAction="#Cancel" prefHeight="39.0" prefWidth="73.0" text="Cancelar" />
    </children>
 </AnchorPane>

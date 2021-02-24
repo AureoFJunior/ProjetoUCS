@@ -13,26 +13,36 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
-    DataBaseClass auxDb = new DataBaseClass();
 
 
-    @FXML
-    public Button btnA;
 
     @FXML
-    public TextField txtName, txtPass;
+    public Button btnSave, btnCancel;
 
     @FXML
-    public void save(ActionEvent event) throws SQLException {
+    public TextField txtNome, txtEmail, txtTele, txtLogra, txtBairro, txtNumero, txtComp, txtCep;
+
+    @FXML
+    public void Save(ActionEvent event) throws SQLException {
+
+        DataBaseClass auxDb = new DataBaseClass();
 
         Connection connAux = auxDb.Connec();
 
-        auxDb.Read(connAux);
+        auxDb.Create(connAux, txtNome, txtEmail, txtTele, txtLogra, txtBairro, txtNumero, txtComp, txtCep);
 
     }
 
     @FXML
-    public void cancel(ActionEvent event){
+    public void Cancel(ActionEvent event2){
+        txtNome = null;
+        txtEmail = null;
+        txtTele  = null;
+        txtLogra = null;
+        txtBairro = null;
+        txtNumero = null;
+        txtComp = null;
+        txtCep = null;
 
     }
 
