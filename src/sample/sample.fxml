@@ -7,21 +7,12 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="374.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">   <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="725.0">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
+          <Menu mnemonicParsing="false" text="Editar">
+               <items>
+                  <MenuItem fx:id="menuUpdate" mnemonicParsing="false" onAction="#Editor" text="Editar" />
+                  <MenuItem fx:id="menuDel" mnemonicParsing="false" text="Excluir" />
+               </items></Menu>
+          <Menu fx:id="menuHelp" mnemonicParsing="false" text="Ajuda" />
         </menus>
       </MenuBar>
       <ListView fx:id="listView" layoutY="27.0" prefHeight="347.0" prefWidth="159.0" />
