@@ -17,6 +17,8 @@ public class DataBaseClass {
 
     public Connection Connec() throws SQLException {
 
+        //Create the connection with the Database.
+
         Connection conn = null;
 
         try{
@@ -36,6 +38,8 @@ public class DataBaseClass {
                               TextField txtTele,TextField txtLogra,TextField txtBairro,
                               TextField txtNumero,TextField txtComp,TextField txtCep)
                             throws SQLException {
+
+        //Instances a new model with her properties and add this to the database in MySql.
 
 
         ClieClass item = new ClieClass();
@@ -71,6 +75,8 @@ public class DataBaseClass {
     }
 
     public List<ClieClass> Read(Connection conn) throws SQLException {
+
+        //Read and retrieve a list of itens in database.
 
         Statement st = null;
         ResultSet rs = null;
@@ -121,6 +127,8 @@ public class DataBaseClass {
                               TextField txtTele, TextField txtLogra, TextField txtBairro,
                               TextField txtNumero, TextField txtComp, TextField txtCep, ListView listClie) throws  SQLException {
 
+        //Update itens if already existis in database.
+
         PreparedStatement st = null;
         ClieClass item = new ClieClass();
 
@@ -155,6 +163,8 @@ public class DataBaseClass {
     }
 
     public void Delete(Connection conn, ListView listView) throws SQLException {
+
+        //Delete a especified item in database.
 
         int id = getId(listView);
         String sql = "DELETE FROM clientes WHERE clie_id=" + id;
@@ -231,6 +241,8 @@ public class DataBaseClass {
     }
 
     public  int getId(ListView listClie){
+
+        //Get the Id from database who increment yourself.
 
         Object auxVar = listClie.getSelectionModel().getSelectedItem();
         String converted = auxVar.toString().substring(0, auxVar.toString().indexOf("-"));

@@ -38,6 +38,8 @@ public class Controller implements Initializable {
     @FXML
     public void Save(ActionEvent event) throws SQLException {
 
+        //Save the cliente, this method call update if already existis or else call create.
+
         String help1 = txtNome.getText();
         String help2 = txtLogra.getText();
         String help3 = txtNumero.getText();
@@ -83,6 +85,9 @@ public class Controller implements Initializable {
 
     @FXML
     public void Cancel(ActionEvent event){
+
+        //This method clear the TextFields to cancel the transaction of creation.
+
         txtNome.setText("");
         txtEmail.setText("");
         txtTele.setText("");
@@ -95,6 +100,8 @@ public class Controller implements Initializable {
 
     @FXML
     public void Deleter(ActionEvent event) throws SQLException {
+
+        //This method call the Delete function.
         DataBaseClass auxDel = new DataBaseClass();
         Connection con = auxDel.Connec();
 
@@ -110,6 +117,8 @@ public class Controller implements Initializable {
 
     @FXML
     public void Refresh() throws SQLException {
+
+        //This method refresh the list view, reading from the database to add the elements.
 
         listView.getItems().clear();
 
@@ -130,6 +139,9 @@ public class Controller implements Initializable {
 
     @FXML
     public void Editor(ActionEvent event) throws SQLException {
+
+        //This method get the infos of an selected item from listview for the TextFields to edit him.
+
         DataBaseClass edtAux = new DataBaseClass();
         Connection con = edtAux.Connec();
 
@@ -146,18 +158,9 @@ public class Controller implements Initializable {
         DataBaseClass auxDbTwo = new DataBaseClass();
         Connection connAux = auxDbTwo.Connec();
 
-        /*listAux.addListener(new InvalidationListener() {
-            @Override
-            public void invalidated(Observable observable) {
-
-            }
-        });*/
 
         DataBaseClass auxDel = new DataBaseClass();
         Connection con = auxDel.Connec();
-
-
-
 
         Refresh();
         if (connAux != null)
