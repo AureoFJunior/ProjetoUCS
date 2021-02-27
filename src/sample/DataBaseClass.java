@@ -10,39 +10,34 @@ import java.util.List;
 
 public class DataBaseClass {
 
-    static final String driver = "com.mysql.jdbc.Driver";
+    static final String driver = "com.mysql.cj.jdbc.Driver";
     static final String url = "jdbc:mysql://localhost/javaregistrador";
     static final String user = "root";
     static final String pass = "root123456";
 
-    public static Connection Connec() throws SQLException {
+    public Connection Connec() throws SQLException {
 
         Connection conn = null;
-
 
         try{
             Class.forName(driver);
             conn = DriverManager.getConnection(url,user,pass);
-
-
 
         }catch (Exception e){
             e.getMessage();
 
         }
 
-
-
-        return conn;
+      return conn;
 
     }
 
-    public static void Create(Connection conn, TextField txtNome,TextField txtEmail,
+    public void Create(Connection conn, TextField txtNome,TextField txtEmail,
                               TextField txtTele,TextField txtLogra,TextField txtBairro,
                               TextField txtNumero,TextField txtComp,TextField txtCep)
                             throws SQLException {
 
-        PreparedStatement st = null;
+
         ClieClass item = new ClieClass();
 
         item.Nome = txtNome.getText();
@@ -62,16 +57,20 @@ public class DataBaseClass {
 
 
 
-        st = conn.prepareStatement(sql);
+        PreparedStatement st = conn.prepareStatement(sql);
         int rows = st.executeUpdate();
 
         if (st != null){
             st.close();
+            conn.close();
         }
+
+
+
 
     }
 
-    public static List<ClieClass> Read(Connection conn) throws SQLException {
+    public List<ClieClass> Read(Connection conn) throws SQLException {
 
         Statement st = null;
         ResultSet rs = null;
@@ -109,23 +108,16 @@ public class DataBaseClass {
         }
         if (rs != null){
             rs.close();
-            if ( st != null){
-                st.close();
-                if (conn != null){
-                    conn.close();
-                }
-            }
-
-
-
-
+            st.close();
+            conn.close();
         }
+
 
         return lista;
 
     }
 
-    public static void Update(Connection conn, TextField txtNome, TextField txtEmail,
+    public void Update(Connection conn, TextField txtNome, TextField txtEmail,
                               TextField txtTele, TextField txtLogra, TextField txtBairro,
                               TextField txtNumero, TextField txtComp, TextField txtCep, ListView listClie) throws  SQLException {
 
@@ -158,10 +150,28 @@ public class DataBaseClass {
 
         if (st != null){
             st.close();
+            conn.close();
         }
     }
 
-    public static void Edit(Connection conn, TextField txtNome, TextField txtEmail,
+    public void Delete(Connection conn, ListView listView) throws SQLException {
+
+        int id = getId(listView);
+        String sql = "DELETE FROM clientes WHERE clie_id=" + id;
+
+        PreparedStatement st = conn.prepareStatement(sql);
+        int rows = st.executeUpdate();
+
+        if (st != null){
+            st.close();
+            conn.close();
+        }
+
+
+
+    }
+
+    public void Edit(Connection conn, TextField txtNome, TextField txtEmail,
                             TextField txtTele, TextField txtLogra, TextField txtBairro,
                             TextField txtNumero, TextField txtComp, TextField txtCep,
                             ListView listClie) throws SQLException {
@@ -214,26 +224,13 @@ public class DataBaseClass {
         }
         if (rs != null){
             rs.close();
-            if ( st != null){
-                st.close();
-                if (conn != null){
-                    conn.close();
-                }
-            }
-
-
-
-
+            st.close();
+            conn.close();
         }
-
-
-
-
-
 
     }
 
-    public static int getId(ListView listClie){
+    public  int getId(ListView listClie){
 
         Object auxVar = listClie.getSelectionModel().getSelectedItem();
         String converted = auxVar.toString().substring(0, auxVar.toString().indexOf("-"));
@@ -242,7 +239,5 @@ public class DataBaseClass {
 
         return id;
     }
-
-
 
 }

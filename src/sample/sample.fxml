@@ -10,7 +10,7 @@
           <Menu mnemonicParsing="false" text="Editar">
                <items>
                   <MenuItem fx:id="menuUpdate" mnemonicParsing="false" onAction="#Editor" text="Editar" />
-                  <MenuItem fx:id="menuDel" mnemonicParsing="false" text="Excluir" />
+                  <MenuItem fx:id="menuDel" mnemonicParsing="false" onAction="#Deleter" text="Excluir" />
                </items></Menu>
           <Menu fx:id="menuHelp" mnemonicParsing="false" text="Ajuda" />
         </menus>

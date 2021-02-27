@@ -1,5 +1,9 @@
 package sample;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,6 +28,7 @@ public class Controller implements Initializable {
     @FXML
     public TextField txtNome, txtEmail, txtTele, txtLogra, txtBairro, txtNumero, txtComp, txtCep;
 
+    private ObservableList<String> listAux = FXCollections.observableArrayList();
     @FXML
     public ListView listView;
 
@@ -31,14 +36,15 @@ public class Controller implements Initializable {
     public MenuItem menuUpdate, menuDel, menuHelp;
 
     @FXML
-    public void Controlar(){
-
-    }
-
-    @FXML
     public void Save(ActionEvent event) throws SQLException {
 
-        if (txtNome.getText() != "" && txtLogra.getText() != "" && txtNumero.getText() != "") {
+        String help1 = txtNome.getText();
+        String help2 = txtLogra.getText();
+        String help3 = txtNumero.getText();
+
+
+
+        if (!help1.equals("") && !help2.equals("") && !help3.equals("")) {
 
             DataBaseClass auxDb = new DataBaseClass();
 
@@ -47,14 +53,18 @@ public class Controller implements Initializable {
             List<ClieClass> listaAux = auxDb.Read(connAux);
 
             for (ClieClass item: listaAux) {
-                if (item.Nome != txtNome.getText()){
-                    auxDb.Create(connAux, txtNome, txtEmail, txtTele, txtLogra, txtBairro, txtNumero, txtComp, txtCep);
+                if (help1.equals(item.Nome)){
+                    auxDb.Update(auxDb.Connec(), txtNome, txtEmail, txtTele, txtLogra, txtBairro, txtNumero, txtComp, txtCep, listView);
+                    break;
                 }
                 else{
-                    auxDb.Update(connAux, txtNome, txtEmail, txtTele, txtLogra, txtBairro, txtNumero, txtComp, txtCep, listView);
+                    auxDb.Create(auxDb.Connec(), txtNome, txtEmail, txtTele, txtLogra, txtBairro, txtNumero, txtComp, txtCep);
+                    break;
                 }
 
             }
+
+            Refresh();
         }
         else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -64,6 +74,7 @@ public class Controller implements Initializable {
 
             alert.showAndWait();
         }
+
 
 
 
@@ -83,11 +94,36 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    public void Refresh(List<ClieClass> lista) {
+    public void Deleter(ActionEvent event) throws SQLException {
+        DataBaseClass auxDel = new DataBaseClass();
+        Connection con = auxDel.Connec();
+
+
+        auxDel.Delete(con, listView);
+
+        Refresh();
+
+        if (con != null)
+            con.close();
+    }
+
+
+    @FXML
+    public void Refresh() throws SQLException {
+
+        listView.getItems().clear();
+
+        DataBaseClass auxDel = new DataBaseClass();
+        Connection con = auxDel.Connec();
+
+
+        List<ClieClass> lista =  auxDel.Read(con);
 
         for (ClieClass item: lista) {
             listView.getItems().add(item.Id + "- " + item.Nome);
         }
+
+        //listView.setItems(listAux);
 
 
     }
@@ -98,6 +134,9 @@ public class Controller implements Initializable {
         Connection con = edtAux.Connec();
 
         edtAux.Edit(con, txtNome, txtEmail, txtTele, txtLogra, txtBairro, txtNumero, txtComp, txtCep, listView);
+
+        if (con != null)
+            con.close();
     }
 
 
@@ -107,7 +146,22 @@ public class Controller implements Initializable {
         DataBaseClass auxDbTwo = new DataBaseClass();
         Connection connAux = auxDbTwo.Connec();
 
-        Refresh(auxDbTwo.Read(connAux));
+        /*listAux.addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {
+
+            }
+        });*/
+
+        DataBaseClass auxDel = new DataBaseClass();
+        Connection con = auxDel.Connec();
+
+
+
+
+        Refresh();
+        if (connAux != null)
+            connAux.close();
     }
 
 }
