@@ -1,10 +1,12 @@
-/*package sample;
+package sample;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,7 @@ public class DataBaseClass {
     static final String user = "root";
     static final String pass = "root123456";
 
-    public Connection Connec() throws SQLException {
+    public Connection connec() throws SQLException {
 
         //Create the connection with the Database.
 
@@ -34,10 +36,9 @@ public class DataBaseClass {
 
     }
 
-    public void Create(Connection conn, TextField txtNome,TextField txtEmail,
-                       TextField txtTele,TextField txtLogra,TextField txtBairro,
-                       TextField txtNumero,TextField txtComp,TextField txtCep)
-            throws SQLException {
+    public void createAut(Connection conn, TextField txtNome, TextField txtIsbn,
+                       TextField txtAut, TextField txtPub, TextField txtEdt,
+                       TextField txtNomeAut, TextField txtPais) throws SQLException {
 
         //Instances a new model with her properties and add this to the database in MySql.
 
@@ -45,13 +46,13 @@ public class DataBaseClass {
         AutorClass item = new AutorClass();
 
         item.Nome = txtNome.getText();
-        item.Pais = txtEmail.getText();
+        item.Pais = txtIsbn.getText();
 
 
         String sqlAux = String.format(" \"%s\", \"%s\"",
                 item.Nome, item.Pais);
 
-        String sql = "INSERT INTO clientes(clie_nome, clie_email, clie_telefone, clie_lograd, clie_bairro, clie_numero, clie_cep, clie_comp) " +
+        String sql = "INSERT INTO autores(aut_nome, aut_pais) " +
                 "VALUES (" + sqlAux + ")";
 
 
@@ -69,82 +70,131 @@ public class DataBaseClass {
 
     }
 
-    public List<ClieClass> Read(Connection conn) throws SQLException {
+    public void createObra(Connection conn, TextField txtNome, TextField txtIsbn,
+                          TextField txtAut, TextField txtPub, TextField txtEdt,
+                          TextField txtNomeAut, TextField txtPais) throws SQLException, ParseException {
 
-        //Read and retrieve a list of itens in database.
-
-        Statement st = null;
-        ResultSet rs = null;
-
-        String sql = "select * from clientes";
+        //Instances a new model with her properties and add this to the database in MySql.
 
 
-        List<ClieClass> lista = new ArrayList<ClieClass>();
-
-        try {
-            st = conn.createStatement();
-            rs = st.executeQuery(sql);
-
-            while (rs.next()) {
-
-                ClieClass item = new ClieClass();
-
-                item.Id = rs.getInt("clie_id");
-                item.Nome = rs.getString("clie_nome");
-                item.Email = rs.getString("clie_email");
-                item.Telefone = rs.getString("clie_telefone");
-                item.Logradouro = rs.getString("clie_lograd");
-                item.Bairro = rs.getString("clie_bairro");
-                item.Numero = rs.getInt("clie_numero");
-                item.CEP = rs.getString("clie_cep");
-                item.Complemento = rs.getString("clie_comp");
-
-                lista.add(item);
-            }
+        ObraClass item = new ObraClass();
 
 
-        }
-        catch (Exception e){
-            e.getMessage();
-        }
-        if (rs != null){
-            rs.close();
+        item.Titulo = txtNome.getText();
+        item.Isbn = txtIsbn.getText();
+        item.Autores = txtAut.getText();
+        item.Editora = txtEdt.getText();
+        String aux = txtPub.getText();
+        item.Lanc = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(aux);
+
+
+        String sqlAux = String.format(" \"%s\", \"%s\", \"%s\", \"%s\", \"%s\" ",
+                item.Titulo, item.Isbn, item.Autores, item.Editora, item.Lanc);
+
+        String sql = "INSERT INTO obras(obr_nome, obr_isb, obr_autores, obr_editora, obr_anopub) " +
+                "VALUES (" + sqlAux + ")";
+
+
+
+        PreparedStatement st = conn.prepareStatement(sql);
+        int rows = st.executeUpdate();
+
+        if (st != null){
             st.close();
             conn.close();
         }
 
 
-        return lista;
+
 
     }
 
-    public void Update(Connection conn, TextField txtNome, TextField txtEmail,
-                       TextField txtTele, TextField txtLogra, TextField txtBairro,
-                       TextField txtNumero, TextField txtComp, TextField txtCep, ListView listClie) throws  SQLException {
+    public List<ObraClass> readObras(Connection conn, int p) throws SQLException {
+
+        //Read and retrieve a list of itens in database.
+
+        Statement st = null;
+        ResultSet rs = null;
+        List<ObraClass> lista = new ArrayList<ObraClass>();
+
+        String sql = "select * from obras";
+
+        if (p == 1){
+
+            return lista;
+        }
+        else{
+
+            try {
+                st = conn.createStatement();
+                rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+
+                    ObraClass item = new ObraClass();
+
+                    item.Id = rs.getInt("obr_id");
+                    item.Titulo = rs.getString("obr_nome");
+                    item.Isbn = rs.getString("obr_isbn");
+                    item.Autores = rs.getString("obr_autores");
+                    item.Editora = rs.getString("obr_editora");
+                    item.Lanc = rs.getDate("obr_anopub");
+
+
+                    lista.add(item);
+                }
+
+
+            }
+            catch (Exception e){
+                e.getMessage();
+            }
+            if (rs != null){
+                rs.close();
+                st.close();
+                conn.close();
+            }
+
+
+            return lista;
+        }
+
+
+
+
+
+
+
+
+    }
+
+    public void updateObra(Connection conn, TextField txtNome, TextField txtIsbn,
+                          TextField txtAut, TextField txtPub, TextField txtEdt,
+                          TextField txtNomeAut, TextField txtPais, ListView listObra) throws SQLException, ParseException {
 
         //Update itens if already existis in database.
 
         PreparedStatement st = null;
-        ClieClass item = new ClieClass();
+        ObraClass item = new ObraClass();
 
-        int id = getId(listClie);
+        int id = getId(listObra);
 
 
         item.Id = id;
-        item.Nome = txtNome.getText();
-        item.Email = txtEmail.getText();
-        item.Telefone = txtTele.getText();
-        item.Logradouro = txtLogra.getText();
-        item.Bairro = txtBairro.getText();
-        item.Numero = Integer.parseInt(txtNumero.getText());
-        item.CEP = txtCep.getText();
-        item.Complemento = txtComp.getText();
+        item.Titulo = txtNome.getText();
+        item.Isbn = txtIsbn.getText();
+        item.Autores = txtAut.getText();
+        item.Editora = txtEdt.getText();
+        String aux = txtPub.getText();
+        item.Lanc = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(aux);
 
-        String sqlAux = String.format(" clie_nome=\"%s\", clie_email=\"%s\",clie_telefone=\"%s\",clie_logra=\"%s\",clie_bairro=\"%s\",clie_numero=%s,clie_cep=\"%s\",clie_comp=\"%s\" ",
-                item.Nome, item.Email, item.Telefone, item.Logradouro, item.Bairro, item.Numero, item.CEP, item.Complemento);
+
+
+        String sqlAux = String.format(" obr_nome=\"%s\", obr_isbn=\"%s\",obr_autores=\"%s\",obr_editora=\"%s\",obr_anopub=\"%s\" ",
+                item.Titulo, item.Isbn, item.Autores, item.Editora, item.Lanc);
 
         String sql = "UPDATE clientes " +
-                "SET " + sqlAux + " WHERE clie_id =" + item.Id + String.format("\"");
+                "SET " + sqlAux + " WHERE obr_id =" + item.Id + String.format("\"");
 
 
 
@@ -157,12 +207,12 @@ public class DataBaseClass {
         }
     }
 
-    public void Delete(Connection conn, ListView listView) throws SQLException {
+    public void delete(Connection conn, ListView listView) throws SQLException {
 
         //Delete a especified item in database.
 
         int id = getId(listView);
-        String sql = "DELETE FROM clientes WHERE clie_id=" + id;
+        String sql = "DELETE FROM obras WHERE obr_id=" + id;
 
         PreparedStatement st = conn.prepareStatement(sql);
         int rows = st.executeUpdate();
@@ -176,21 +226,21 @@ public class DataBaseClass {
 
     }
 
-    public void Edit(Connection conn, TextField txtNome, TextField txtEmail,
-                     TextField txtTele, TextField txtLogra, TextField txtBairro,
-                     TextField txtNumero, TextField txtComp, TextField txtCep,
-                     ListView listClie) throws SQLException {
+    public void edit(Connection conn, TextField txtNome, TextField txtIsbn,
+                     TextField txtAut, TextField txtPub, TextField txtEdt,
+                     TextField txtNomeAut, TextField txtPais,
+                     ListView listObra) throws SQLException {
 
         Statement st = null;
         ResultSet rs = null;
 
-        int id = getId(listClie);
+        int id = getId(listObra);
 
 
-        String sql = "select * from clientes WHERE clie_id =" + id;
+        String sql = "select * from obras WHERE obr_id =" + id;
 
-        ClieClass itens = new ClieClass();
-        List<ClieClass> lista = new ArrayList<ClieClass>();
+        ObraClass itens = new ObraClass();
+        List<ObraClass> lista = new ArrayList<ObraClass>();
 
         try {
             st = conn.createStatement();
@@ -200,25 +250,21 @@ public class DataBaseClass {
 
             while (rs.next()) {
                 //itens.Id = rs.getInt("clie_id");
-                itens.Nome = rs.getString("clie_nome");
-                itens.Email = rs.getString("clie_email");
-                itens.Telefone = rs.getString("clie_telefone");
-                itens.Logradouro = rs.getString("clie_lograd");
-                itens.Bairro = rs.getString("clie_bairro");
-                itens.Numero = rs.getInt("clie_numero");
-                itens.CEP = rs.getString("clie_cep");
-                itens.Complemento = rs.getString("clie_comp");
+                itens.Id = rs.getInt("obr_id");
+                itens.Titulo = rs.getString("obr_nome");
+                itens.Isbn = rs.getString("obr_isbn");
+                itens.Autores = rs.getString("obr_autores");
+                itens.Editora = rs.getString("obr_editora");
+                itens.Lanc = rs.getDate("obr_anopub");
 
 
 
-                txtNome.setText(itens.Nome);
-                txtEmail.setText(itens.Email);
-                txtTele.setText(itens.Telefone);
-                txtLogra.setText(itens.Logradouro);
-                txtBairro.setText(itens.Bairro);
-                txtNumero.setText(String.valueOf(itens.Numero));
-                txtCep.setText(itens.CEP);
-                txtComp.setText(itens.Complemento);
+                txtNome.setText(itens.Titulo);
+                txtIsbn.setText(itens.Isbn);
+                txtAut.setText(itens.Autores);
+                txtEdt.setText(itens.Editora);
+                txtPub.setText(itens.Lanc.toString());
+
 
             }
 
@@ -235,11 +281,11 @@ public class DataBaseClass {
 
     }
 
-    public  int getId(ListView listClie){
+    public  int getId(ListView listObra){
 
         //Get the Id from database who increment yourself.
 
-        Object auxVar = listClie.getSelectionModel().getSelectedItem();
+        Object auxVar = listObra.getSelectionModel().getSelectedItem();
         String converted = auxVar.toString().substring(0, auxVar.toString().indexOf("-"));
 
         int id = Integer.parseInt(converted);
@@ -248,4 +294,3 @@ public class DataBaseClass {
     }
 
 }
-*/

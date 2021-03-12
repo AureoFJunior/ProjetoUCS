@@ -9,7 +9,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="Editar">
                <items>
-                  <MenuItem fx:id="menuUpdate" mnemonicParsing="false"  text="Editar" />
+                  <MenuItem fx:id="menuUpdate" mnemonicParsing="false" text="Editar" />
                   <MenuItem fx:id="menuDel" mnemonicParsing="false" text="Excluir" />
                </items></Menu>
           <Menu fx:id="menuHelp" mnemonicParsing="false" text="Ajuda" />
@@ -24,23 +24,25 @@
       <Label layoutX="161.0" layoutY="61.0" prefHeight="17.0" prefWidth="49.0" text="Título" />
       <Label layoutX="161.0" layoutY="95.0" prefHeight="17.0" prefWidth="49.0" text="ISBN" />
       <Label layoutX="161.0" layoutY="128.0" prefHeight="17.0" prefWidth="86.0" text="Autor/Autores" />
-      <Label layoutX="161.0" layoutY="236.0" prefHeight="17.0" prefWidth="66.0" text="Autor">
+      <Label layoutX="161.0" layoutY="273.0" prefHeight="17.0" prefWidth="66.0" text="Autor">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="161.0" layoutY="264.0" prefHeight="17.0" prefWidth="86.0" text="Nome*" />
+      <Label layoutX="161.0" layoutY="301.0" prefHeight="17.0" prefWidth="86.0" text="Nome*" />
       <TextField fx:id="txtNome" layoutX="264.0" layoutY="57.0" prefHeight="25.0" prefWidth="346.0" />
-      <TextField fx:id="txtEmail" layoutX="264.0" layoutY="91.0" prefHeight="25.0" prefWidth="346.0" />
-      <TextField fx:id="txtTele" layoutX="265.0" layoutY="124.0" prefHeight="25.0" prefWidth="346.0" />
-      <Label layoutX="161.0" layoutY="300.0" prefHeight="17.0" prefWidth="86.0" text="País de Origem*" />
-      <TextField fx:id="txtLogra" layoutX="264.0" layoutY="260.0" prefHeight="25.0" prefWidth="365.0" />
-      <TextField fx:id="txtCep" layoutX="264.0" layoutY="296.0" prefHeight="25.0" prefWidth="365.0" />
-      <Button fx:id="btnSave" layoutX="611.0" layoutY="350.0" mnemonicParsing="false"  prefHeight="39.0" prefWidth="73.0" text="Salvar" />
-      <Button fx:id="btnCancel" layoutX="509.0" layoutY="350.0" mnemonicParsing="false"  prefHeight="39.0" prefWidth="73.0" text="Cancelar" />
+      <TextField fx:id="txtIsbn" layoutX="264.0" layoutY="91.0" prefHeight="25.0" prefWidth="346.0" />
+      <TextField fx:id="txtAut" layoutX="265.0" layoutY="124.0" prefHeight="25.0" prefWidth="346.0" />
+      <Label layoutX="161.0" layoutY="337.0" prefHeight="17.0" prefWidth="86.0" text="País de Origem*" />
+      <TextField fx:id="txtNomeAut" layoutX="264.0" layoutY="297.0" prefHeight="25.0" prefWidth="365.0" />
+      <TextField fx:id="txtPais" layoutX="264.0" layoutY="333.0" prefHeight="25.0" prefWidth="365.0" />
+      <Button fx:id="btnSave" layoutX="629.0" layoutY="217.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="73.0" text="Salvar" />
+      <Button fx:id="btnCancel" layoutX="546.0" layoutY="217.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="73.0" text="Cancelar" />
       <Label layoutX="161.0" layoutY="161.0" prefHeight="17.0" prefWidth="107.0" text="Ano de Publicação" />
-      <TextField fx:id="txtTele1" layoutX="264.0" layoutY="157.0" prefHeight="25.0" prefWidth="149.0" />
+      <TextField fx:id="txtPub" layoutX="264.0" layoutY="157.0" prefHeight="25.0" prefWidth="149.0" />
       <Label layoutX="161.0" layoutY="192.0" prefHeight="17.0" prefWidth="107.0" text="Editora" />
-      <TextField fx:id="txtTele11" layoutX="264.0" layoutY="188.0" prefHeight="25.0" prefWidth="346.0" />
+      <TextField fx:id="txtEdt" layoutX="264.0" layoutY="188.0" prefHeight="25.0" prefWidth="346.0" />
+      <Button fx:id="btnCancel2" layoutX="546.0" layoutY="369.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="73.0" text="Cancelar" />
+      <Button fx:id="btnSave2" layoutX="629.0" layoutY="369.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="73.0" text="Salvar" />
    </children>
 </AnchorPane>
