@@ -1,4 +1,4 @@
-package sample;
+/*package sample;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -11,7 +11,7 @@ import java.util.List;
 public class DataBaseClass {
 
     static final String driver = "com.mysql.cj.jdbc.Driver";
-    static final String url = "jdbc:mysql://localhost/javaregistrador";
+    static final String url = "jdbc:mysql://localhost/biblioteca";
     static final String user = "root";
     static final String pass = "root123456";
 
@@ -30,34 +30,29 @@ public class DataBaseClass {
 
         }
 
-      return conn;
+        return conn;
 
     }
 
     public void Create(Connection conn, TextField txtNome,TextField txtEmail,
-                              TextField txtTele,TextField txtLogra,TextField txtBairro,
-                              TextField txtNumero,TextField txtComp,TextField txtCep)
-                            throws SQLException {
+                       TextField txtTele,TextField txtLogra,TextField txtBairro,
+                       TextField txtNumero,TextField txtComp,TextField txtCep)
+            throws SQLException {
 
         //Instances a new model with her properties and add this to the database in MySql.
 
 
-        ClieClass item = new ClieClass();
+        AutorClass item = new AutorClass();
 
         item.Nome = txtNome.getText();
-        item.Email = txtEmail.getText();
-        item.Telefone = txtTele.getText();
-        item.Logradouro = txtLogra.getText();
-        item.Bairro = txtBairro.getText();
-        item.Numero = Integer.parseInt(txtNumero.getText());
-        item.CEP = txtCep.getText();
-        item.Complemento = txtComp.getText();
+        item.Pais = txtEmail.getText();
 
-        String sqlAux = String.format(" \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", %s, \"%s\", \"%s\" ",
-                item.Nome, item.Email, item.Telefone, item.Logradouro, item.Bairro, item.Numero, item.CEP, item.Complemento);
+
+        String sqlAux = String.format(" \"%s\", \"%s\"",
+                item.Nome, item.Pais);
 
         String sql = "INSERT INTO clientes(clie_nome, clie_email, clie_telefone, clie_lograd, clie_bairro, clie_numero, clie_cep, clie_comp) " +
-                     "VALUES (" + sqlAux + ")";
+                "VALUES (" + sqlAux + ")";
 
 
 
@@ -124,8 +119,8 @@ public class DataBaseClass {
     }
 
     public void Update(Connection conn, TextField txtNome, TextField txtEmail,
-                              TextField txtTele, TextField txtLogra, TextField txtBairro,
-                              TextField txtNumero, TextField txtComp, TextField txtCep, ListView listClie) throws  SQLException {
+                       TextField txtTele, TextField txtLogra, TextField txtBairro,
+                       TextField txtNumero, TextField txtComp, TextField txtCep, ListView listClie) throws  SQLException {
 
         //Update itens if already existis in database.
 
@@ -182,9 +177,9 @@ public class DataBaseClass {
     }
 
     public void Edit(Connection conn, TextField txtNome, TextField txtEmail,
-                            TextField txtTele, TextField txtLogra, TextField txtBairro,
-                            TextField txtNumero, TextField txtComp, TextField txtCep,
-                            ListView listClie) throws SQLException {
+                     TextField txtTele, TextField txtLogra, TextField txtBairro,
+                     TextField txtNumero, TextField txtComp, TextField txtCep,
+                     ListView listClie) throws SQLException {
 
         Statement st = null;
         ResultSet rs = null;
@@ -204,15 +199,15 @@ public class DataBaseClass {
             rs = st.executeQuery(sql);
 
             while (rs.next()) {
-               //itens.Id = rs.getInt("clie_id");
-               itens.Nome = rs.getString("clie_nome");
-               itens.Email = rs.getString("clie_email");
-               itens.Telefone = rs.getString("clie_telefone");
-               itens.Logradouro = rs.getString("clie_lograd");
-               itens.Bairro = rs.getString("clie_bairro");
-               itens.Numero = rs.getInt("clie_numero");
-               itens.CEP = rs.getString("clie_cep");
-               itens.Complemento = rs.getString("clie_comp");
+                //itens.Id = rs.getInt("clie_id");
+                itens.Nome = rs.getString("clie_nome");
+                itens.Email = rs.getString("clie_email");
+                itens.Telefone = rs.getString("clie_telefone");
+                itens.Logradouro = rs.getString("clie_lograd");
+                itens.Bairro = rs.getString("clie_bairro");
+                itens.Numero = rs.getInt("clie_numero");
+                itens.CEP = rs.getString("clie_cep");
+                itens.Complemento = rs.getString("clie_comp");
 
 
 
@@ -253,3 +248,4 @@ public class DataBaseClass {
     }
 
 }
+*/
