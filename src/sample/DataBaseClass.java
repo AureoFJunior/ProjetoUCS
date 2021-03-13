@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
@@ -36,17 +35,15 @@ public class DataBaseClass {
 
     }
 
-    public void createAut(Connection conn, TextField txtNome, TextField txtIsbn,
-                       TextField txtAut, TextField txtPub, TextField txtEdt,
-                       TextField txtNomeAut, TextField txtPais) throws SQLException {
+    public void createAut(Connection conn, TextField txtNomeAut, TextField txtPais) throws SQLException {
 
         //Instances a new model with her properties and add this to the database in MySql.
 
 
         AutorClass item = new AutorClass();
 
-        item.Nome = txtNome.getText();
-        item.Pais = txtIsbn.getText();
+        item.Nome = txtNomeAut.getText();
+        item.Pais = txtPais.getText();
 
 
         String sqlAux = String.format(" \"%s\", \"%s\"",
@@ -71,8 +68,8 @@ public class DataBaseClass {
     }
 
     public void createObra(Connection conn, TextField txtNome, TextField txtIsbn,
-                          TextField txtAut, TextField txtPub, TextField txtEdt,
-                          TextField txtNomeAut, TextField txtPais) throws SQLException, ParseException {
+                          TextField txtAut, TextField txtPub, TextField txtEdt
+                          ) throws SQLException, ParseException {
 
         //Instances a new model with her properties and add this to the database in MySql.
 
@@ -118,6 +115,8 @@ public class DataBaseClass {
         List<ObraClass> lista = new ArrayList<ObraClass>();
 
         String sql = "select * from obras";
+
+        // if p == 0 read the obras table.
 
         if (p == 1){
 
@@ -170,7 +169,7 @@ public class DataBaseClass {
 
     public void updateObra(Connection conn, TextField txtNome, TextField txtIsbn,
                           TextField txtAut, TextField txtPub, TextField txtEdt,
-                          TextField txtNomeAut, TextField txtPais, ListView listObra) throws SQLException, ParseException {
+                           ListView listObra) throws SQLException, ParseException {
 
         //Update itens if already existis in database.
 
@@ -228,7 +227,6 @@ public class DataBaseClass {
 
     public void edit(Connection conn, TextField txtNome, TextField txtIsbn,
                      TextField txtAut, TextField txtPub, TextField txtEdt,
-                     TextField txtNomeAut, TextField txtPais,
                      ListView listObra) throws SQLException {
 
         Statement st = null;
