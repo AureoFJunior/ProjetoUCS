@@ -34,7 +34,7 @@ public class Controller implements Initializable {
     public Button btnCancel, btnCancel2, btnSave, btnSave2;
 
     @FXML
-    public ListView listview;
+    public ListView listView;
 
     @SneakyThrows
     @Override
@@ -99,7 +99,7 @@ public class Controller implements Initializable {
 
             for (ObraClass item: listaAux) {
                 if (help1.equals(item.Titulo) && help2.equals(item.Isbn)){
-                    auxDb.updateObra(auxDb.connec(), txtNome, txtIsbn, txtAut, txtEdt, txtPub, listview);
+                    auxDb.updateObra(auxDb.connec(), txtNome, txtIsbn, txtAut, txtEdt, txtPub, listView);
                     break;
                 }
                 else{
@@ -148,7 +148,7 @@ public class Controller implements Initializable {
         Connection con = auxDel.connec();
 
 
-        auxDel.delete(con, listview);
+        auxDel.delete(con, listView);
 
         Refresh();
 
@@ -162,7 +162,11 @@ public class Controller implements Initializable {
 
         //This method refresh the list view, reading from the database to add the elements.
 
-        listview.getItems().clear();
+        if(listView != null){
+
+            listView.getItems().clear();
+        }
+
 
         DataBaseClass auxDel = new DataBaseClass();
         Connection con = auxDel.connec();
@@ -171,7 +175,7 @@ public class Controller implements Initializable {
 
         List<ObraClass> lista =  auxDel.readObras(con, 0);
         for (ObraClass item: lista) {
-            listview.getItems().add(item.Id + "- " + item.Titulo);
+            listView.getItems().add(item.Id + "- " + item.Titulo);
         }
 
         //listView.setItems(listAux);
@@ -187,7 +191,7 @@ public class Controller implements Initializable {
         DataBaseClass edtAux = new DataBaseClass();
         Connection con = edtAux.connec();
 
-        edtAux.edit(con, txtNome, txtIsbn, txtAut, txtEdt, txtPub, listview);
+        edtAux.edit(con, txtNome, txtIsbn, txtAut, txtEdt, txtPub, listView);
 
         if (con != null)
             con.close();
@@ -202,7 +206,7 @@ public class Controller implements Initializable {
     public void abreCad() throws IOException {
 
         Stage s1 = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("layout/sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         Scene scene = new Scene(root);
 
         s1.setScene(scene);
@@ -214,7 +218,7 @@ public class Controller implements Initializable {
     @FXML
     public void abrePesq() throws  IOException {
         Stage s2 = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("layout/obras.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("obras.fxml"));
         Scene scene = new Scene(root);
 
         s2.setScene(scene);
