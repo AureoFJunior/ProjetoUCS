@@ -14,7 +14,7 @@ public class DataBaseClass {
     static final String driver = "com.mysql.cj.jdbc.Driver";
     static final String url = "jdbc:mysql://localhost/biblioteca";
     static final String user = "root";
-    static final String pass = "root123456";
+    static final String pass = "rootado";
 
     public Connection connec() throws SQLException {
 
@@ -80,16 +80,17 @@ public class DataBaseClass {
         item.Titulo = txtNome.getText();
         item.Isbn = txtIsbn.getText();
         item.Autores = txtAut.getText();
-        item.Editora = txtEdt.getText();
         String aux = txtPub.getText();
-        item.Lanc = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(aux);
+        item.Lanc = Integer.parseInt(aux);
+        item.Editora = txtEdt.getText();
 
 
-        String sqlAux = String.format(" \"%s\", \"%s\", \"%s\", \"%s\", \"%s\" ",
-                item.Titulo, item.Isbn, item.Autores, item.Editora, item.Lanc);
 
-        String sql = "INSERT INTO obras(obr_nome, obr_isb, obr_autores, obr_editora, obr_anopub) " +
-                "VALUES (" + sqlAux + ")";
+        String sqlAux = String.format(" \"%s\", \"%s\", \"%s\", \"%s\" ",
+                item.Titulo, item.Isbn, item.Autores, item.Editora);
+
+        String sql = "INSERT INTO obras(obr_nome, obr_isbn, obr_autores, obr_editora, obr_anopub) " +
+                "VALUES (" + sqlAux +"," + item.Lanc + ")";
 
 
 
@@ -137,7 +138,7 @@ public class DataBaseClass {
                     item.Isbn = rs.getString("obr_isbn");
                     item.Autores = rs.getString("obr_autores");
                     item.Editora = rs.getString("obr_editora");
-                    item.Lanc = rs.getDate("obr_anopub");
+                    item.Lanc = rs.getInt("obr_anopub");
 
 
                     lista.add(item);
@@ -184,16 +185,16 @@ public class DataBaseClass {
         item.Isbn = txtIsbn.getText();
         item.Autores = txtAut.getText();
         item.Editora = txtEdt.getText();
-        String aux = txtPub.getText();
-        item.Lanc = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(aux);
+        Integer aux = Integer.parseInt(txtPub.getText());
+        item.Lanc = aux;
 
 
 
-        String sqlAux = String.format(" obr_nome=\"%s\", obr_isbn=\"%s\",obr_autores=\"%s\",obr_editora=\"%s\",obr_anopub=\"%s\" ",
-                item.Titulo, item.Isbn, item.Autores, item.Editora, item.Lanc);
+        String sqlAux = String.format(" obr_nome=\"%s\", obr_isbn=\"%s\",obr_autores=\"%s\" ",
+                item.Titulo, item.Isbn, item.Autores, item.Editora);
 
         String sql = "UPDATE clientes " +
-                "SET " + sqlAux + " WHERE obr_id =" + item.Id + String.format("\"");
+                "SET " + sqlAux + "obr_anopub=" + "obr_editora=" + item.Lanc + " WHERE obr_id =" + item.Id + String.format("\"");
 
 
 
@@ -253,7 +254,7 @@ public class DataBaseClass {
                 itens.Isbn = rs.getString("obr_isbn");
                 itens.Autores = rs.getString("obr_autores");
                 itens.Editora = rs.getString("obr_editora");
-                itens.Lanc = rs.getDate("obr_anopub");
+                itens.Lanc = rs.getInt("obr_anopub");
 
 
 
@@ -292,3 +293,8 @@ public class DataBaseClass {
     }
 
 }
+
+
+
+
+

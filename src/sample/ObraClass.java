@@ -12,5 +12,5 @@ public class ObraClass {
     public String Isbn;
     public String Autores;
     public String Editora;
-    public Date Lanc;
+    public Integer Lanc;
 }
