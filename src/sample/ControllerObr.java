@@ -2,10 +2,12 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import lombok.SneakyThrows;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -14,7 +16,7 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ControllerObr {
+public class ControllerObr implements Initializable {
 
     @FXML
     public TextField txtNome, txtIsbn, txtAut, txtPub, txtEdt, txtNomeAut, txtPais;
@@ -25,7 +27,9 @@ public class ControllerObr {
     @FXML
     public ListView listView;
 
-    public void initialize(URL location, ResourceBundle resources) throws SQLException {
+    @SneakyThrows
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         DataBaseClass auxDbTwo = new DataBaseClass();
         Connection connAux = auxDbTwo.connec();
 
