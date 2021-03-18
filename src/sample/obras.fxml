@@ -1,13 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="249.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane prefHeight="541.0" prefWidth="557.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ControllerPesq">
    <children>
-      <Button layoutX="241.0" layoutY="10.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="52.0" text="Button" />
-      <Label layoutX="22.0" layoutY="14.0" prefHeight="17.0" prefWidth="66.0" text="Pesquisa" />
-      <TextField fx:id="txtPesq" layoutX="74.0" layoutY="10.0" />
-      <TextArea fx:id="txtRel" layoutY="310.0" prefHeight="167.0" prefWidth="600.0" />
+      <Button fx:id="btnSearch" layoutX="313.0" layoutY="159.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="52.0" text="Go" />
+      <ListView fx:id="listViewPesq" layoutY="215.0" prefHeight="325.0" prefWidth="584.0" />
+      <TextField fx:id="txtTitle" layoutX="216.0" layoutY="14.0" />
+      <TextField fx:id="txtIsbn" layoutX="216.0" layoutY="50.0" />
+      <TextField fx:id="txtActor" layoutX="216.0" layoutY="87.0" />
+      <TextField fx:id="txtEditora" layoutX="216.0" layoutY="121.0" />
+      <Label layoutX="15.0" layoutY="14.0" text="Título">
+         <font>
+            <Font name="Yu Gothic Light" size="22.0" />
+         </font></Label>
+      <Label layoutX="16.0" layoutY="50.0" text="Isbn">
+         <font>
+            <Font name="Yu Gothic Light" size="22.0" />
+         </font></Label>
+      <Label layoutX="14.0" layoutY="87.0" text="Autor">
+         <font>
+            <Font name="Yu Gothic Light" size="22.0" />
+         </font></Label>
+      <Label layoutX="14.0" layoutY="121.0" text="Editora">
+         <font>
+            <Font name="Yu Gothic Light" size="22.0" />
+         </font></Label>
+      <TextField fx:id="txtDate" layoutX="216.0" layoutY="159.0" prefHeight="25.0" prefWidth="73.0" />
+      <Label layoutX="16.0" layoutY="158.0" prefHeight="26.0" prefWidth="192.0" text="Data de lançamento">
+         <font>
+            <Font name="Yu Gothic Light" size="22.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="407.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Logo-UCS-Vertical-PNG_3.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

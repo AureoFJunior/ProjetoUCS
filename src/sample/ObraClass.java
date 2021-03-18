@@ -2,7 +2,9 @@ package sample;
 
 import lombok.Data;
 
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.DriverManager;
 
 @Data
 public class ObraClass {
@@ -13,4 +15,7 @@ public class ObraClass {
     public String Autores;
     public String Editora;
     public Integer Lanc;
+
+
+
 }
