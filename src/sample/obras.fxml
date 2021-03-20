@@ -7,8 +7,8 @@
 
 <AnchorPane prefHeight="541.0" prefWidth="557.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ControllerPesq">
    <children>
-      <Button fx:id="btnSearch" layoutX="313.0" layoutY="159.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="52.0" text="Go" />
-      <ListView fx:id="listViewPesq" layoutY="215.0" prefHeight="325.0" prefWidth="584.0" />
+      <Button fx:id="btnSearch" layoutX="14.0" layoutY="192.0" mnemonicParsing="false" onAction="#Refresh" prefHeight="32.0" prefWidth="382.0" text="Go" />
+      <ListView fx:id="listViewPesq" layoutY="231.0" prefHeight="309.0" prefWidth="584.0" />
       <TextField fx:id="txtTitle" layoutX="216.0" layoutY="14.0" />
       <TextField fx:id="txtIsbn" layoutX="216.0" layoutY="50.0" />
       <TextField fx:id="txtActor" layoutX="216.0" layoutY="87.0" />
@@ -29,8 +29,8 @@
          <font>
             <Font name="Yu Gothic Light" size="22.0" />
          </font></Label>
-      <TextField fx:id="txtDate" layoutX="216.0" layoutY="159.0" prefHeight="25.0" prefWidth="73.0" />
-      <Label layoutX="16.0" layoutY="158.0" prefHeight="26.0" prefWidth="192.0" text="Data de lançamento">
+      <TextField fx:id="txtDate" layoutX="134.0" layoutY="159.0" prefHeight="25.0" prefWidth="73.0" />
+      <Label layoutX="16.0" layoutY="158.0" prefHeight="26.0" prefWidth="119.0" text="Data Inicial">
          <font>
             <Font name="Yu Gothic Light" size="22.0" />
          </font>
@@ -40,5 +40,11 @@
             <Image url="@Logo-UCS-Vertical-PNG_3.png" />
          </image>
       </ImageView>
+      <Label layoutX="216.0" layoutY="158.0" prefHeight="26.0" prefWidth="119.0" text="Data Final">
+         <font>
+            <Font name="Yu Gothic Light" size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtDateFinal" layoutX="322.0" layoutY="159.0" prefHeight="25.0" prefWidth="73.0" />
    </children>
 </AnchorPane>
