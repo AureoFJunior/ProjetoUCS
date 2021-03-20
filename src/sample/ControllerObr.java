@@ -162,7 +162,7 @@ public class ControllerObr implements Initializable {
         DataBaseClass edtAux = new DataBaseClass();
         Connection con = edtAux.connec();
 
-        edtAux.edit(con, txtNome, txtIsbn, txtAut, txtEdt, txtPub, listView);
+        edtAux.edit(con, txtNome, txtIsbn, txtAut, txtPub, txtEdt, listView);
 
         if (con != null)
             con.close();

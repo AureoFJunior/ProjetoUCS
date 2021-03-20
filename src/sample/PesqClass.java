@@ -69,22 +69,22 @@ import java.util.List;
         };
 
         if(pesq.Title != ""){
-            where.add(" obr_nome LIKE %'" + pesq.Title + "'%");
+            where.add("obr_nome LIKE '%" + pesq.Title + "%'");
         }
         if(pesq.Isbn != ""){
-            where.add(" obr_isbn LIKE %'" + pesq.Isbn + "'%");
+            where.add("obr_isbn LIKE '%" + pesq.Isbn + "%'");
         }
         if(pesq.Editora != ""){
-            where.add(" obr_editora LIKE %'" + pesq.Editora + "'%");
+            where.add("obr_editora LIKE '%" + pesq.Editora + "%'");
         }
         if(pesq.Autor != ""){
-            where.add(" obr_autores LIKE %'" + pesq.Autor + "'%");
+            where.add("obr_autores LIKE '%" + pesq.Autor + "%'");
         }
         if(!pesq.DataInicial.equals(null)){
-            where.add(" obr_anopub > '" + pesq.DataInicial + "'");
+            where.add("obr_anopub > " + pesq.DataInicial + "");
         }
         if(!pesq.DataFinal.equals(null)){
-            where.add(" obr_anopub < '" + pesq.DataFinal + "'");
+            where.add("obr_anopub < " + pesq.DataFinal + "");
         }
 
         if (where.size() > 0)
@@ -97,14 +97,16 @@ import java.util.List;
         {
             sql += " " + where.get(i);
             if (i != where.size() - 1)
-                sql += " AND ";
+                sql += " AND";
 
         }
+
+        sql += " order by obr_nome ASC ";
 
         Statement st = conAux.createStatement();
         ResultSet rs = st.executeQuery(sql);
         //rs = st.executeQuery(sql);
-        List<ObraClass> listinha = null;
+        List<ObraClass> listinha = new ArrayList<>();
 
         while (rs.next()) {
 
