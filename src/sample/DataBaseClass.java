@@ -9,31 +9,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataBaseClass {
+public class DataBaseClass extends ConectaBanco {
 
-    static final String driver = "com.mysql.cj.jdbc.Driver";
-    static final String url = "jdbc:mysql://localhost/biblioteca";
-    static final String user = "root";
-    static final String pass = "rootado";
 
-    public Connection connec() throws SQLException {
-
-        //Create the connection with the Database.
-
-        Connection conn = null;
-
-        try{
-            Class.forName(driver);
-            conn = DriverManager.getConnection(url,user,pass);
-
-        }catch (Exception e){
-            e.getMessage();
-
-        }
-
-        return conn;
-
-    }
 
     public void createAut(Connection conn, TextField txtNomeAut, TextField txtPais) throws SQLException {
 
@@ -107,6 +85,40 @@ public class DataBaseClass {
 
     }
 
+    public void createAutor(Connection conn, TextField txtNome, TextField txtPais
+    ) throws SQLException, ParseException {
+
+        //Instances a new model with her properties and add this to the database in MySql.
+
+
+        AutorClass cara = new AutorClass();
+
+
+        cara.Nome = txtNome.getText();
+        cara.Pais = txtPais.getText();
+
+
+
+
+        String sqlAux = String.format(" \"%s\", \"%s\" ",
+                cara.Nome, cara.Pais);
+
+        String sql = "INSERT INTO autores(aut_nome, aut_pais) " +
+                "VALUES (" + sqlAux + ")";
+
+
+
+        PreparedStatement st = conn.prepareStatement(sql);
+        int rows = st.executeUpdate();
+
+        if (st != null){
+            st.close();
+            conn.close();
+        }
+
+
+    }
+
     public List<ObraClass> readObras(Connection conn, int p) throws SQLException {
 
         //Read and retrieve a list of itens in database.
@@ -116,8 +128,6 @@ public class DataBaseClass {
         List<ObraClass> lista = new ArrayList<ObraClass>();
 
         String sql = "select * from obras";
-
-        // if p == 0 read the obras table.
 
         if (p == 1){
 
@@ -155,16 +165,8 @@ public class DataBaseClass {
                 conn.close();
             }
 
-
             return lista;
         }
-
-
-
-
-
-
-
 
     }
 
@@ -191,7 +193,7 @@ public class DataBaseClass {
 
 
         String sqlAux = String.format(" obr_nome=\"%s\", obr_isbn=\"%s\",obr_autores=\"%s\" ",
-                item.Titulo, item.Isbn, item.Autores, item.Editora);
+                item.Titulo, item.Isbn, item.Autores);
 
         String sql = "UPDATE clientes " +
                 "SET " + sqlAux + "obr_anopub=" + "obr_editora=" + item.Lanc + " WHERE obr_id =" + item.Id + String.format("\"");

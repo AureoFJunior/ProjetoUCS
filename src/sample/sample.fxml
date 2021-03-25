@@ -42,7 +42,7 @@
       <TextField fx:id="txtPub" layoutX="264.0" layoutY="157.0" prefHeight="25.0" prefWidth="118.0" />
       <Label layoutX="161.0" layoutY="192.0" prefHeight="17.0" prefWidth="107.0" text="Editora" />
       <TextField fx:id="txtEdt" layoutX="264.0" layoutY="188.0" prefHeight="25.0" prefWidth="346.0" />
-      <Button fx:id="btnCancel2" layoutX="546.0" layoutY="369.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="73.0" text="Cancelar" />
-      <Button fx:id="btnSave2" layoutX="629.0" layoutY="369.0" mnemonicParsing="false" onAction="#saveObra" prefHeight="39.0" prefWidth="73.0" text="Salvar" />
+      <Button fx:id="btnCancel2" layoutX="546.0" layoutY="369.0" mnemonicParsing="false" onAction="#cancelAut" prefHeight="39.0" prefWidth="73.0" text="Cancelar" />
+      <Button fx:id="btnSave2" layoutX="629.0" layoutY="369.0" mnemonicParsing="false" onAction="#saveAutor" prefHeight="39.0" prefWidth="73.0" text="Salvar" />
    </children>
 </AnchorPane>

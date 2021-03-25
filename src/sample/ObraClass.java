@@ -16,6 +16,4 @@ public class ObraClass {
     public String Editora;
     public Integer Lanc;
 
-
-
 }

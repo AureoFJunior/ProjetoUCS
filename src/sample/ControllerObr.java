@@ -84,10 +84,21 @@ public class ControllerObr implements Initializable {
             alert.showAndWait();
         }
 
+    }
 
+    @FXML
+    public void saveAutor(ActionEvent event) throws SQLException, ParseException {
 
+        //Save the cliente, this method call update if already existis or else call create.
 
+        String help1 = txtNome.getText();
+        String help2 = txtIsbn.getText();
 
+        DataBaseClass auxDb = new DataBaseClass();
+        Connection connAux = auxDb.connec();
+        auxDb.createAutor(auxDb.connec(), txtNomeAut, txtPais);
+
+        //Refresh();
     }
 
     @FXML
@@ -100,6 +111,16 @@ public class ControllerObr implements Initializable {
         txtPub.setText("");
         txtAut.setText("");
         txtEdt.setText("");
+
+    }
+
+    @FXML
+    public void cancelAut(ActionEvent event){
+
+        //This method clear the TextFields to cancel the transaction of creation.
+
+        txtNomeAut.setText("");
+        txtPais.setText("");
 
     }
 
@@ -145,12 +166,9 @@ public class ControllerObr implements Initializable {
             }
 
             else {
-                System.out.println("ERRO KRL");
+                System.out.println("ERRO");
             }
         }
-
-        //listView.setItems(listAux);
-
 
     }
 

@@ -29,11 +29,7 @@ public class ControllerPesq implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         PesqClass auxDbTwo = new PesqClass();
-        Connection connAux = auxDbTwo.conex();
-
-
-        //DataBaseClass auxDel = new DataBaseClass();
-        //Connection con = auxDel.connec();
+        Connection connAux = auxDbTwo.connec();
 
         //Refresh();
         if (connAux != null)
@@ -52,7 +48,7 @@ public class ControllerPesq implements Initializable {
 
 
         PesqClass auxDel = new PesqClass();
-        Connection con = auxDel.conex();
+        Connection con = auxDel.connec();
         ObraClass obj = new ObraClass();
 
 
@@ -65,12 +61,9 @@ public class ControllerPesq implements Initializable {
             }
 
             else {
-                System.out.println("ERRO KRL");
+                System.out.println("ERRO");
             }
         }
-
-        //listView.setItems(listAux);
-
 
     }
 

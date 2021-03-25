@@ -28,20 +28,12 @@ public class Controller implements Initializable {
     public ImageView imgAutor, imgLivros;
 
     @FXML
-    public TextField txtNome, txtIsbn, txtAut, txtPub, txtEdt, txtNomeAut, txtPais;
-
-    @FXML
     public Button btnCancel, btnCancel2, btnSave, btnSave2;
-
-    @FXML
-    public ListView listView;
 
     @SneakyThrows
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //File file = new File("..\\..\\..\\..\\Downloads\\Nietzsche187a.jpg");
 
-        //imgAutor.setImage(new Image(getClass().getResourceAsStream("..\\..\\..\\..\\Downloads\\Nietzsche187a.jpg")));
         if(imgAutor == null){
             return;
         }
@@ -67,12 +59,6 @@ public class Controller implements Initializable {
         });
 
     }
-
-
-
-
-
-
 
 
     @FXML

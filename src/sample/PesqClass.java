@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
- public class PesqClass {
+ public class PesqClass extends ConectaBanco {
 
     public String Title;
     public String Isbn;
@@ -22,21 +22,7 @@ import java.util.List;
     static final String user = "root";
     static final String pass = "rootado";
 
-    public Connection conex() {
 
-        Connection conecta = null;
-
-        try{
-            Class.forName(driver);
-            conecta = DriverManager.getConnection(url,user,pass);
-
-        }catch (Exception e){
-            e.getMessage();
-
-        }
-
-        return conecta;
-    }
 
     public List<ObraClass> pesquisa(ObraClass obra, TextField txtTitle,
                          TextField txtIsbn, TextField txtActor,
@@ -44,7 +30,7 @@ import java.util.List;
 
         PesqClass pesq = new PesqClass();
 
-        Connection conAux = pesq.conex();
+        Connection conAux = pesq.connec();
 
         pesq.Title = txtTitle.getText();
         pesq.Isbn = txtIsbn.getText();
@@ -58,10 +44,6 @@ import java.util.List;
             pesq.DataInicial = 0;
             pesq.DataFinal = 9999;
         }
-
-
-        /*String sqlAux = String.format(" \"%s\", \"%s\", \"%s\", \"%s\", \"%s\"  ",
-                pesq.Title, pesq.Isbn, pesq.Autor, pesq.Editora, pesq.Data);*/
 
         String sql = "SELECT * FROM obras";
 
@@ -118,8 +100,6 @@ import java.util.List;
             item.Autores = rs.getString("obr_autores");
             item.Editora = rs.getString("obr_editora");
             item.Lanc = rs.getInt("obr_anopub");
-
-
 
             listinha.add(item);
         }
