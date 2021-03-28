@@ -84,5 +84,10 @@ public class Controller implements Initializable {
         s2.show();
     }
 
+    @FXML
+    public void fechaApp(){
+        System.exit(0);
+    }
+
 
 }

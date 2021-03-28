@@ -5,10 +5,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="541.0" prefWidth="557.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ControllerPesq">
+<AnchorPane prefHeight="541.0" prefWidth="557.0" style="-fx-background-color: linear-gradient(to right top, #6e83e7, #6b88eb, #678cf0, #6491f4, #6095f8);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ControllerPesq">
    <children>
-      <Button fx:id="btnSearch" layoutX="14.0" layoutY="192.0" mnemonicParsing="false" onAction="#Refresh" prefHeight="32.0" prefWidth="382.0" text="Go" />
-      <ListView fx:id="listViewPesq" layoutY="231.0" prefHeight="309.0" prefWidth="584.0" />
+      <Button fx:id="btnSearch" layoutX="14.0" layoutY="192.0" mnemonicParsing="false" onAction="#Refresh" prefHeight="32.0" prefWidth="382.0" style="-fx-background-color: transparent;" text="Pesquisar">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
+      <ListView fx:id="listViewPesq" layoutY="231.0" prefHeight="309.0" prefWidth="584.0" style="-fx-background-color: linear-gradient(to right top, #ffffff, #f2f2f4, #e6e6e9, #d9dade, #ccced3);" />
       <TextField fx:id="txtTitle" layoutX="216.0" layoutY="14.0" />
       <TextField fx:id="txtIsbn" layoutX="216.0" layoutY="50.0" />
       <TextField fx:id="txtActor" layoutX="216.0" layoutY="87.0" />

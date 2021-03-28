@@ -1,19 +1,139 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="430.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane id="AnchorPane" prefHeight="430.0" prefWidth="600.0" style="-fx-background-image: transparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <ImageView fx:id="imgLivros" fitHeight="430.0" fitWidth="429.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@harrppedra.jpg" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="imgAutor" fitHeight="431.0" fitWidth="300.0" layoutX="300.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@unnamed.png" />
-         </image>
-      </ImageView>
+      <AnchorPane layoutX="14.0" layoutY="28.0" prefHeight="377.0" prefWidth="554.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="28.0">
+         <children>
+            <AnchorPane layoutX="241.0" layoutY="24.0" prefHeight="320.0" prefWidth="300.0" style="-fx-background-color: linear-gradient(to top, #e753e7, #d345d3, #bf36bf, #ab27ab, #981698); background-image: linear-gradient(to right bottom, #38e757, #00e3cb, #00d1ff, #00b1ff, #c989eb); -fx-background-radius: 9;" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="241.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="23.0">
+               <children>
+                  <Button fx:id="btnCadastrar" layoutX="102.0" layoutY="76.0" mnemonicParsing="false" onAction="#abreCad" style="-fx-background-color: transparent; -fx-background-radius: 5;" text="Cadastrar">
+                     <font>
+                        <Font name="System Bold" size="21.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="1.0" radius="0.41860465116279066">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.8901960849761963" green="0.4274509847164154" blue="0.7372549176216125" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </RadialGradient>
+                     </textFill>
+                  </Button>
+                  <Button fx:id="btnPesquisar" layoutX="101.0" layoutY="142.0" mnemonicParsing="false" onAction="#abrePesq" style="-fx-background-color: transparent; -fx-background-radius: 5;" text="Pesquisar">
+                     <font>
+                        <Font name="System Bold" size="21.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="1.0" radius="0.41860465116279066">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.8901960849761963" green="0.4274509847164154" blue="0.7372549176216125" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.09210526198148727" green="0.055860135704278946" blue="0.055860135704278946" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </RadialGradient>
+                     </textFill>
+                  </Button>
+                  <Button layoutX="131.0" layoutY="204.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-background-radius: 5;" text="Sair">
+                     <font>
+                        <Font name="System Bold" size="21.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="1.0" radius="0.41860465116279066">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.8901960849761963" green="0.4274509847164154" blue="0.7372549176216125" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.09210526198148727" green="0.055860135704278946" blue="0.055860135704278946" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </RadialGradient>
+                     </textFill></Button>
+               </children></AnchorPane>
+            <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="350.0" prefWidth="255.0" style="-fx-background-color: linear-gradient(to right top, #f2c648, #ff9d53, #ff737b, #ff5cae, #c864de); -fx-background-radius: 9;" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="11.5" AnchorPane.topAnchor="14.0">
+               <children>
+                  <VBox alignment="CENTER" layoutX="32.0" layoutY="82.0" prefHeight="183.0" prefWidth="191.0" AnchorPane.bottomAnchor="81.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="82.0">
+                     <children>
+                        <Label alignment="CENTER" text="Biblioteca">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                           <textFill>
+                              <RadialGradient centerX="0.5111111111111112" centerY="0.261904761904762" radius="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.02631578966975212" green="0.003289473708719015" blue="0.003289473708719015" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.5517241379310345">
+                                       <color>
+                                          <Color red="0.02631578966975212" green="0.003289473708719015" blue="0.003289473708719015" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </RadialGradient>
+                           </textFill>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="30.0" layoutY="76.0" text="Ucs">
+                           <font>
+                              <Font size="29.0" />
+                           </font>
+                           <textFill>
+                              <RadialGradient centerX="0.5111111111111112" centerY="0.261904761904762" radius="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.02631578966975212" green="0.003289473708719015" blue="0.003289473708719015" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.5517241379310345">
+                                       <color>
+                                          <Color red="0.02631578966975212" green="0.003289473708719015" blue="0.003289473708719015" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </RadialGradient>
+                           </textFill>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children></AnchorPane>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
