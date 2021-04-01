@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -21,6 +22,14 @@ public class Main extends Application {
     public void start (Stage stage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("inicial.fxml"));
         stage.initStyle(StageStyle.TRANSPARENT);
+
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+
 
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
@@ -38,9 +47,9 @@ public class Main extends Application {
             }
         });
 
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+
+
+
     }
 
 
