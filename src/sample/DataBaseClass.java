@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
@@ -92,40 +93,48 @@ public class DataBaseClass extends ConectaBanco {
 
 
         AutorClass cara = new AutorClass();
-
+        AutorClass caraAux = new AutorClass();
 
         cara.Nome = txtNome.getText();
         cara.Pais = txtPais.getText();
 
+        if(!cara.equals(caraAux)) {
 
 
+            String sqlAux = String.format(" \"%s\", \"%s\" ",
+                    cara.Nome, cara.Pais);
 
-        String sqlAux = String.format(" \"%s\", \"%s\" ",
-                cara.Nome, cara.Pais);
-
-        String sql = "INSERT INTO autores(aut_nome, aut_pais) " +
-                "VALUES (" + sqlAux + ")";
-
+            String sql = "INSERT INTO autores(aut_nome, aut_pais) " +
+                    "VALUES (" + sqlAux + ")";
 
 
-        PreparedStatement st = conn.prepareStatement(sql);
-        int rows = st.executeUpdate();
+            PreparedStatement st = conn.prepareStatement(sql);
+            int rows = st.executeUpdate();
 
-        if (st != null){
-            st.close();
-            conn.close();
+            if (st != null) {
+                st.close();
+                conn.close();
+            }
+
         }
+        else{
 
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Impossível adicionar Autor");
+            alert.setContentText("Deu ruim");
 
+            alert.showAndWait();
+        }
     }
 
-    public List<ObraClass> readObras(Connection conn, int p) throws SQLException {
+    public ListaLivros<ObraClass> readObras(Connection conn, int p) throws SQLException {
 
         //Read and retrieve a list of itens in database.
 
         Statement st = null;
         ResultSet rs = null;
-        List<ObraClass> lista = new ArrayList<ObraClass>();
+        ListaLivros<ObraClass> lista = new ListaLivros<ObraClass>();
 
         String sql = "select * from obras";
 
@@ -241,7 +250,7 @@ public class DataBaseClass extends ConectaBanco {
         String sql = "select * from obras WHERE obr_id =" + id;
 
         ObraClass itens = new ObraClass();
-        List<ObraClass> lista = new ArrayList<ObraClass>();
+        ListaLivros<ObraClass> lista = new ListaLivros<ObraClass>();
 
         try {
             st = conn.createStatement();

@@ -1,7 +1,9 @@
 package sample;
 
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import lombok.Data;
+import lombok.SneakyThrows;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -24,9 +26,11 @@ import java.util.List;
 
 
 
+    @SneakyThrows
     public List<ObraClass> pesquisa(ObraClass obra, TextField txtTitle,
-                         TextField txtIsbn, TextField txtActor,
-                         TextField txtEditora, TextField txtDate, TextField txtDateFinal) throws SQLException {
+                                    TextField txtIsbn, TextField txtActor,
+                                    TextField txtEditora, TextField txtDate, TextField txtDateFinal) throws SQLException {
+
 
         PesqClass pesq = new PesqClass();
 
@@ -88,29 +92,47 @@ import java.util.List;
         Statement st = conAux.createStatement();
         ResultSet rs = st.executeQuery(sql);
         //rs = st.executeQuery(sql);
-        List<ObraClass> listinha = new ArrayList<>();
+        ListaLivros<ObraClass> listinha = new ListaLivros<>();
+        try {
+            while (rs.next()) {
 
-        while (rs.next()) {
+                ObraClass item = new ObraClass();
 
-            ObraClass item = new ObraClass();
+                item.Id = rs.getInt("obr_id");
+                item.Titulo = rs.getString("obr_nome");
+                item.Isbn = rs.getString("obr_isbn");
+                item.Autores = rs.getString("obr_autores");
+                item.Editora = rs.getString("obr_editora");
+                item.Lanc = rs.getInt("obr_anopub");
 
-            item.Id = rs.getInt("obr_id");
-            item.Titulo = rs.getString("obr_nome");
-            item.Isbn = rs.getString("obr_isbn");
-            item.Autores = rs.getString("obr_autores");
-            item.Editora = rs.getString("obr_editora");
-            item.Lanc = rs.getInt("obr_anopub");
+                listinha.add(item);
+            }
 
-            listinha.add(item);
+
+            if (st != null) {
+                st.close();
+                conAux.close();
+            }
+
+
+            if (listinha.size() <= 0) {
+                throw new ExcecaoDeLivroNaoEncontrado(listinha);
+            }
+        }
+        catch (ExcecaoDeLivroNaoEncontrado e){
+            e.getMessage();
+            e.printStackTrace();
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(e.toString());
+            alert.setContentText("Deu ruim");
+
+            alert.showAndWait();
         }
 
-        if (st != null){
-            st.close();
-            conAux.close();
-        }
 
         return listinha;
-
 
     }
 

@@ -3,17 +3,17 @@ package sample;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import lombok.SneakyThrows;
 
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ControllerObr implements Initializable {
@@ -47,39 +47,76 @@ public class ControllerObr implements Initializable {
 
         //Save the cliente, this method call update if already existis or else call create.
 
+        ObraClass obra = new ObraClass();
+        ObraClass obraAux = new ObraClass();
+
+
+        obra.Isbn = txtIsbn.getText();
+        obra.Autores = txtNome.getText();
+
         String help1 = txtNome.getText();
         String help2 = txtIsbn.getText();
+        String auxHelp3 = txtPub.getText();
+        Integer help3 = 0;
+
+        if (auxHelp3 != "") {
+            help3 = Integer.parseInt(auxHelp3);
+            obra.Lanc = Integer.parseInt(txtPub.getText());
+        }
+        else{
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Error");
+            alerta.setHeaderText("Data inválida!");
+            alerta.setContentText("Opa, deu erro aqui!");
+
+            alerta.showAndWait();
+        }
 
 
 
 
-        if (!help1.equals("") && !help1.equals("")) {
+        if (!obra.equals(obraAux) && help3 != null ) {
 
             DataBaseClass auxDb = new DataBaseClass();
 
             Connection connAux = auxDb.connec();
 
-            List<ObraClass> listaAux = auxDb.readObras(connAux, 0);
+            ListaLivros<ObraClass> listaAux = auxDb.readObras(connAux, 0);
+            ListaLivros<ObraClass> verificador = new ListaLivros<>();
 
-            for (ObraClass item: listaAux) {
-                if (help1.equals(item.Titulo) && help2.equals(item.Isbn)){
-                    auxDb.updateObra(auxDb.connec(), txtNome, txtIsbn, txtAut, txtPub, txtEdt, listView);
-                    break;
+            try {
+                for (ObraClass item : listaAux) {
+
+                    if (obra.equals(item) && !item.equals(obraAux)) {
+                        verificador.add(item);
+                    }
                 }
-                else{
+
+                if (verificador.size() > 0) {
+                    throw new ExcecaoDeLivroJaExistente();
+                } else {
+
                     auxDb.createObra(auxDb.connec(), txtNome, txtIsbn, txtAut, txtPub, txtEdt);
-                    break;
                 }
 
+                Refresh();
+            }catch (ExcecaoDeLivroJaExistente e){
+
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setTitle("Error");
+                alerta.setHeaderText(e.toString() + "  \n" + "Obra ou Autor já existente no cadastro\nNão foi possível inclui-la\n");
+                alerta.setContentText("Opa, deu erro aqui!");
+
+                Optional<ButtonType> result = alerta.showAndWait();
+                ButtonType button = result.orElse(ButtonType.CANCEL);
             }
 
-            Refresh();
         }
         else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
-            alert.setHeaderText("Campos obrigatórios\n não preenchidos");
-            alert.setContentText("Ooops, there was an error here!");
+            alert.setHeaderText("Campos obrigatórios\nnão preenchidos");
+            alert.setContentText("Opa, deu erro aqui!");
 
             alert.showAndWait();
         }
@@ -90,9 +127,6 @@ public class ControllerObr implements Initializable {
     public void saveAutor(ActionEvent event) throws SQLException, ParseException {
 
         //Save the cliente, this method call update if already existis or else call create.
-
-        String help1 = txtNome.getText();
-        String help2 = txtIsbn.getText();
 
         DataBaseClass auxDb = new DataBaseClass();
         Connection connAux = auxDb.connec();
@@ -158,7 +192,7 @@ public class ControllerObr implements Initializable {
 
 
 
-        List<ObraClass> lista = auxDel.readObras(con, 0);
+        ListaLivros<ObraClass> lista = auxDel.readObras(con, 0);
         for (ObraClass item: lista) {
             if (item != null){
                 //listView.getItems().add("Teste");
@@ -185,5 +219,7 @@ public class ControllerObr implements Initializable {
         if (con != null)
             con.close();
     }
+
+
 
 }
