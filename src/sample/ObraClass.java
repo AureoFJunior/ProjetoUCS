@@ -29,4 +29,13 @@ public class ObraClass {
     public int hashCode() {
         return Objects.hash(getId(), getTitulo(), getIsbn(), getAutores(), getEditora(), getLanc());
     }
+
+    @Override
+    public String toString() {
+        return "ObraClass{" +
+                "Id=" + Id +
+                ", Titulo='" + Titulo + '\'' +
+                ", Isbn='" + Isbn + '\'' +
+                '}';
+    }
 }
