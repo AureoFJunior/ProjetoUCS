@@ -125,8 +125,8 @@ import java.util.List;
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
-            alert.setHeaderText(e.toString());
-            alert.setContentText("Deu ruim");
+            alert.setHeaderText(e.toString() + " \n" + "Livro não encontrado\n");
+            alert.setContentText("Algo deu errado e não foi possível localizar o livro");
 
             alert.showAndWait();
         }
