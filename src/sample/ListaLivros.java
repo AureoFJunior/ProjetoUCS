@@ -9,6 +9,21 @@ import java.util.stream.Stream;
 
 public class ListaLivros<E> extends ArrayList<E> {
 
+    public void IncluirNoInicio(E e){
+        add(0, e);
+    }
+
+    public void IncluirNoFim(E e){
+        add(e);
+    }
+
+    public int Tamanho(){
+        return this.size();
+    }
+
+    public void RemoverDoFim(){
+        this.remove(this.size());
+    }
 
     public ListaLivros(int initialCapacity) {
         super(initialCapacity);
