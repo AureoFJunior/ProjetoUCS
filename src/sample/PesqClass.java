@@ -105,7 +105,7 @@ import java.util.List;
                 item.Editora = rs.getString("obr_editora");
                 item.Lanc = rs.getInt("obr_anopub");
 
-                listinha.add(item);
+                listinha.IncluirNoInicio(item);
             }
 
 

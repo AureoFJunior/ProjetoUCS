@@ -21,6 +21,10 @@ public class ListaLivros<E> extends ArrayList<E> {
         return this.size();
     }
 
+    /*public void Ordenar(ListaLivros lista){
+        lista.sort();
+    }*/
+
     public void RemoverDoFim(){
         this.remove(this.size());
     }

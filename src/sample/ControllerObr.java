@@ -88,7 +88,7 @@ public class ControllerObr implements Initializable {
                 for (ObraClass item : listaAux) {
 
                     if (obra.equals(item) && !item.equals(obraAux)) {
-                        verificador.add(item);
+                        verificador.IncluirNoFim(item);
                     }
                 }
 
