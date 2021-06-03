@@ -33,7 +33,6 @@ public class ControllerObr implements Initializable {
         DataBaseClass auxDbTwo = new DataBaseClass();
         Connection connAux = auxDbTwo.connec();
 
-
         //DataBaseClass auxDel = new DataBaseClass();
         //Connection con = auxDel.connec();
 

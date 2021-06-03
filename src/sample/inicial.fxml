@@ -9,7 +9,7 @@
    <children>
       <AnchorPane layoutX="14.0" layoutY="28.0" prefHeight="377.0" prefWidth="554.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="28.0">
          <children>
-            <AnchorPane layoutX="241.0" layoutY="24.0" prefHeight="320.0" prefWidth="300.0" style="-fx-background-color: linear-gradient(to top, #e753e7, #d345d3, #bf36bf, #ab27ab, #981698); background-image: linear-gradient(to right bottom, #38e757, #00e3cb, #00d1ff, #00b1ff, #c989eb); -fx-background-radius: 9;" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="241.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="23.0">
+            <AnchorPane layoutX="241.0" layoutY="24.0" prefHeight="320.0" prefWidth="300.0" style="-fx-background-color: white; background-image: linear-gradient(to right bottom, #38e757, #00e3cb, #00d1ff, #00b1ff, #c989eb); -fx-background-radius: 9;" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="241.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="23.0">
                <children>
                   <Button fx:id="btnCadastrar" layoutX="102.0" layoutY="76.0" mnemonicParsing="false" onAction="#abreCad" style="-fx-background-color: transparent; -fx-background-radius: 5;" text="Cadastrar">
                      <font>
