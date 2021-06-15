@@ -5,7 +5,7 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="422.0" prefWidth="732.0" style="-fx-background-color: linear-gradient(to right top, #d1dcf8, #c4d2f3, #b8c7ef, #abbdea, #9eb3e5);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ControllerObr">   <children>
-      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="725.0" style="-fx-background-color: linear-gradient(to right top, #d1dcf8, #d0d9ef, #cfd5e5, #cdd2dc, #ccced3);">
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="732.0" style="-fx-background-color: linear-gradient(to right top, #d1dcf8, #d0d9ef, #cfd5e5, #cdd2dc, #ccced3);">
         <menus>
           <Menu mnemonicParsing="false" text="Editar">
                <items>
@@ -48,11 +48,11 @@
       <TextField fx:id="txtPub" layoutX="264.0" layoutY="157.0" prefHeight="25.0" prefWidth="118.0" />
       <Label layoutX="161.0" layoutY="192.0" prefHeight="17.0" prefWidth="107.0" text="Editora" />
       <TextField fx:id="txtEdt" layoutX="264.0" layoutY="188.0" prefHeight="25.0" prefWidth="346.0" />
-      <Button fx:id="btnCancel2" layoutX="546.0" layoutY="369.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="73.0" style="-fx-background-color: transparent;" text="Cancelar">
+      <Button fx:id="btnCancel2" layoutX="546.0" layoutY="369.0" mnemonicParsing="false" onAction="#cancelAut" prefHeight="39.0" prefWidth="73.0" style="-fx-background-color: transparent;" text="Cancelar">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button fx:id="btnSave2" layoutX="629.0" layoutY="369.0" mnemonicParsing="false" onAction="#saveObra" prefHeight="39.0" prefWidth="73.0" style="-fx-background-color: transparent;" text="Salvar">
+      <Button fx:id="btnSave2" layoutX="629.0" layoutY="369.0" mnemonicParsing="false" onAction="#saveAutor" prefHeight="39.0" prefWidth="73.0" style="-fx-background-color: transparent;" text="Salvar">
          <font>
             <Font size="14.0" />
          </font></Button>

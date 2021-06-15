@@ -119,7 +119,7 @@ public class ControllerObr implements Initializable {
 
             alert.showAndWait();
         }
-
+        cancelar();
     }
 
     @FXML
@@ -138,13 +138,18 @@ public class ControllerObr implements Initializable {
     public void cancelObra(ActionEvent event){
 
         //This method clear the TextFields to cancel the transaction of creation.
+        cancelar();
 
+
+    }
+
+    @FXML
+    public void cancelar(){
         txtNome.setText("");
         txtIsbn.setText("");
         txtPub.setText("");
         txtAut.setText("");
         txtEdt.setText("");
-
     }
 
     @FXML
