@@ -94,6 +94,9 @@ public class DataBaseClass extends ConectaBanco {
         AutorClass cara = new AutorClass();
         AutorClass caraAux = new AutorClass();
 
+        caraAux.Nome = "";
+        caraAux.Pais = "";
+
         cara.Nome = txtNome.getText();
         cara.Pais = txtPais.getText();
 
@@ -120,7 +123,7 @@ public class DataBaseClass extends ConectaBanco {
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
-            alert.setHeaderText("Impossível adicionar Autor");
+            alert.setHeaderText("Impossível adicionar Autor\nDados obrigatórios não preenchidos");
             alert.setContentText("Deu ruim");
 
             alert.showAndWait();
